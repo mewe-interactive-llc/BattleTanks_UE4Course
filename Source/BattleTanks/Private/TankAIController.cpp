@@ -23,24 +23,6 @@ void ATankAIController::BeginPlay()
 {
     Super::BeginPlay();
 
-    auto PlayerTank = GetPlayerTank();
-    if (!PlayerTank)
-    {
-        UE_LOG(LogTemp, Warning, TEXT("Player controller not found"));
-    }
-    else
-    {
-        UE_LOG(LogTemp, Warning, TEXT("We found this Player Tank and the bitch name is %s"), *PlayerTank->GetName());
-    }
-
-    if (GetControlledTank() == nullptr)
-    {
-        return;
-    }
-    else
-    {
-       
-        UE_LOG(LogTemp, Warning, TEXT("This tank is auto possessed by an AI Controller "));
-    }
+    
     
 }
