@@ -22,7 +22,13 @@ public:
 	ATankPlayerController();
 	class ATank* GetControlledTank () const;
 
-	void AimAtCrosshair();
+	void AimAtCrossHair();
+
+	UPROPERTY(EditAnywhere, Category = "Crosshair Coordinates")
+	float CrossHairXLocation = 0.5;
+
+	UPROPERTY(EditAnywhere, Category = "Crosshair Coordinates")
+	float CrossHairYLocation = 0.33333;
 	
 	
 
@@ -34,5 +40,8 @@ protected:
 
 private:
 	bool GetRayHitLocation(FVector& OutHitLocation ) const;
+
+	
+	
 	
 };

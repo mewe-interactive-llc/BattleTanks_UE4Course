@@ -16,13 +16,13 @@ void ATankPlayerController::BeginPlay()
     {
         return;
     }
-    UE_LOG(LogTemp, Warning, TEXT("You are possessing %s"), *GetControlledTank()->GetName());
+    
 }
 
 void ATankPlayerController::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
-    AimAtCrosshair();
+    AimAtCrossHair();
 }
 
 
@@ -35,7 +35,7 @@ ATank* ATankPlayerController::GetControlledTank() const
 }
 
 
-void ATankPlayerController::AimAtCrosshair()
+void ATankPlayerController::AimAtCrossHair()
 {
     if (!GetControlledTank())
     {
@@ -45,7 +45,7 @@ void ATankPlayerController::AimAtCrosshair()
     FVector HitLocation;
     if (GetRayHitLocation(HitLocation))
     {
-        
+        UE_LOG(LogTemp, Warning, TEXT("Hit Direction: %s"), * HitLocation.ToString());
     }
     // Get World location through crosshair IE Line trace
     // if hit hits land scape
@@ -55,14 +55,21 @@ void ATankPlayerController::AimAtCrosshair()
 
 bool ATankPlayerController::GetRayHitLocation(FVector& OutHitLocation) const
 {
-    FHitResult Hit;
-    FVector StartLoc;
-    FVector EndLoc;
-    FCollisionQueryParams Params;
-    GetWorld()->LineTraceSingleByChannel(Hit, StartLoc, EndLoc, ECC_Visibility, Params );
+    // Here we create our own variable to tell the function below to output the information it has out through them so we can read them at runtime.
+    int32 ViewportSizeX, ViewportSizeY;
+    GetViewportSize(ViewportSizeX, ViewportSizeY);
 
-    FVector(1);
-    return false;
+    // Find CrossHair Position.
+    FVector2D ScreenLocation = FVector2D(ViewportSizeX * CrossHairXLocation, ViewportSizeY * CrossHairYLocation);
+    
+    
+    
+   
+    //line trace through that direciton
+   
+
+    
+    return true;
     
 }
 
