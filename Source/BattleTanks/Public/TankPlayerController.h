@@ -40,6 +40,7 @@ protected:
 
 private:
 	bool GetRayHitLocation(FVector& OutHitLocation ) const;
+	bool GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const;
 
 	
 	

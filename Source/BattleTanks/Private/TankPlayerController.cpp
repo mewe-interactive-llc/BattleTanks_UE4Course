@@ -45,7 +45,7 @@ void ATankPlayerController::AimAtCrossHair()
     FVector HitLocation;
     if (GetRayHitLocation(HitLocation))
     {
-        UE_LOG(LogTemp, Warning, TEXT("Hit Direction: %s"), * HitLocation.ToString());
+        //UE_LOG(LogTemp, Warning, TEXT("Hit Direction: %s"), * HitLocation.ToString());
     }
     // Get World location through crosshair IE Line trace
     // if hit hits land scape
@@ -55,24 +55,36 @@ void ATankPlayerController::AimAtCrossHair()
 
 bool ATankPlayerController::GetRayHitLocation(FVector& OutHitLocation) const
 {
-    // Here we create our own variable to tell the function below to output the information it has out through them so we can read them at runtime.
     int32 ViewportSizeX, ViewportSizeY;
     GetViewportSize(ViewportSizeX, ViewportSizeY);
-
+    
     // Find CrossHair Position.
     FVector2D ScreenLocation = FVector2D(ViewportSizeX * CrossHairXLocation, ViewportSizeY * CrossHairYLocation);
+    FVector LookDirection; // output parameter placeholder for &WorldDirection
     
-    
-    
+    // Here we create our own variable to tell the function below to output the information it has out through them so we can read them at runtime.
+    if ( GetLookDirection(ScreenLocation, LookDirection ))
+    {
+        UE_LOG(LogTemp, Warning, TEXT("Look Direction: %s"), * LookDirection.ToString());
+    }
    
     //line trace through that direciton
-   
-
-    
     return true;
     
 }
 
+bool ATankPlayerController::GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const
+{
+   
+    FVector CameraLocation; // output parameter placeholder for &CameraWorldLocation
+   
+    if (DeprojectScreenPositionToWorld(ScreenLocation.X, ScreenLocation.Y, CameraLocation, LookDirection))
+    {
+        return true;
+    }
+
+    return false;
+}
 
 
 #pragma endregion 
