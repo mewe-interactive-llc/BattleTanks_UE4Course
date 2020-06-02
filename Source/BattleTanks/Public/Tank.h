@@ -14,6 +14,7 @@ class BATTLETANKS_API ATank : public APawn
 public:
 	// Sets default values for this pawn's properties
 	ATank();
+	
 
 protected:
 	// Called when the game starts or when spawned
