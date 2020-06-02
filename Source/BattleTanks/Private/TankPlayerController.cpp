@@ -26,6 +26,8 @@ void ATankPlayerController::Tick(float DeltaTime)
 }
 
 
+
+
 #pragma region My Methods
 ATank* ATankPlayerController::GetControlledTank() const
 {
@@ -39,11 +41,31 @@ void ATankPlayerController::AimAtCrosshair()
     {
         return;
     }
-
+    
+    FVector HitLocation;
+    if (GetRayHitLocation(HitLocation))
+    {
+        
+    }
     // Get World location through crosshair IE Line trace
     // if hit hits land scape
     // aim the tank at that point
     // Line trace by single channel from the center of the camera out forward into the world by the distance of the weapon range
 }
+
+bool ATankPlayerController::GetRayHitLocation(FVector& OutHitLocation) const
+{
+    FHitResult Hit;
+    FVector StartLoc;
+    FVector EndLoc;
+    FCollisionQueryParams Params;
+    GetWorld()->LineTraceSingleByChannel(Hit, StartLoc, EndLoc, ECC_Visibility, Params );
+
+    FVector(1);
+    return false;
+    
+}
+
+
 
 #pragma endregion 
