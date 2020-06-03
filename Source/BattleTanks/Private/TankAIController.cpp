@@ -24,3 +24,22 @@ void ATankAIController::BeginPlay()
     Super::BeginPlay();
 
 }
+
+void ATankAIController::Tick(float DeltaTime)
+{
+    if (!GetPlayerTank())
+    {
+        return;
+    }
+
+    // TODO Move towards player
+
+    // Get Player Location and aim at it
+    FString AITankName = GetName();
+    
+    GetControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
+
+    //TODO Attack player when ready 
+    
+    UE_LOG(LogTemp, Warning, TEXT("%s aiming at %s "), *AITankName, *GetPlayerTank()->GetName());
+}

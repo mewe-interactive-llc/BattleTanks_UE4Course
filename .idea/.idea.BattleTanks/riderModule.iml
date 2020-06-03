@@ -240,6 +240,7 @@
     <content url="file://C:/UE_4.25/Engine/Plugins/Runtime/GoogleVR/GoogleVRTransition2D" />
     <content url="file://C:/UE_4.25/Engine/Plugins/Runtime/HDRIBackdrop" />
     <content url="file://C:/UE_4.25/Engine/Plugins/Runtime/HTTPChunkInstaller" />
+    <content url="file://C:/UE_4.25/Engine/Plugins/Runtime/HoudiniEngine" />
     <content url="file://C:/UE_4.25/Engine/Plugins/Runtime/IOSDeviceProfileSelector" />
     <content url="file://C:/UE_4.25/Engine/Plugins/Runtime/IOSReplayKit" />
     <content url="file://C:/UE_4.25/Engine/Plugins/Runtime/LinuxDeviceProfileSelector" />
@@ -252,9 +253,9 @@
     <content url="file://C:/UE_4.25/Engine/Plugins/Runtime/MicrosoftSpatialAudio" />
     <content url="file://C:/UE_4.25/Engine/Plugins/Runtime/MixedRealityCaptureFramework" />
     <content url="file://C:/UE_4.25/Engine/Plugins/Runtime/MobilePatchingUtils" />
-    <content url="file://C:/UE_4.25/Engine/Plugins/Runtime/Nvidia/Ansel" />
     <content url="file://C:/UE_4.25/Engine/Plugins/Runtime/NetworkPrediction" />
     <content url="file://C:/UE_4.25/Engine/Plugins/Runtime/NetworkPredictionExtras" />
+    <content url="file://C:/UE_4.25/Engine/Plugins/Runtime/Nvidia/Ansel" />
     <content url="file://C:/UE_4.25/Engine/Plugins/Runtime/OSC" />
     <content url="file://C:/UE_4.25/Engine/Plugins/Runtime/Oculus/OculusAudio" />
     <content url="file://C:/UE_4.25/Engine/Plugins/Runtime/Oculus/OculusAvatar" />

@@ -14,11 +14,15 @@ class BATTLETANKS_API ATank : public APawn
 public:
 	// Sets default values for this pawn's properties
 	ATank();
+
+	void AimAt(FVector HitLocation);
 	
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	class UAimingComponent* TankAimingComponent = nullptr;
 
 public:	
 	// Called every frame
