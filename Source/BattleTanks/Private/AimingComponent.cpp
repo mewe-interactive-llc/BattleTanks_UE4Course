@@ -2,6 +2,7 @@
 
 
 #include "BattleTanks/Public/AimingComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values for this component's properties
 UAimingComponent::UAimingComponent()
@@ -13,30 +14,49 @@ UAimingComponent::UAimingComponent()
 	// ...
 }
 
-
-// Called when the game starts
-void UAimingComponent::BeginPlay()
+void UAimingComponent::SetBarrelReference(UStaticMeshComponent* BarrelToSet)
 {
-	Super::BeginPlay();
-
-	// ...
-	
+	BarrelMesh = BarrelToSet;
 }
 
 
-// Called every frame
-void UAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+
+void UAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 {
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	if (!BarrelMesh)
+	{
+		return;
+	}
+
+	FVector OutLaunchVelocity;
+	FVector StartLocation = BarrelMesh->GetSocketLocation(FName("LaunchSocket"));
+	
+	if (UGameplayStatics::SuggestProjectileVelocity
+	(
+		this,
+		OutLaunchVelocity,
+		StartLocation,
+		HitLocation,
+		LaunchSpeed,
+		ESuggestProjVelocityTraceOption::DoNotTrace
+	))
+
+	{
+		FVector AimDirection = OutLaunchVelocity.GetSafeNormal();
+		UE_LOG(LogTemp, Warning, TEXT(" Aiming at %s "), *AimDirection.ToString());
+		MoveBarrelTowards(AimDirection);
+	}
 
 	
-
-	// ...
 }
 
-void UAimingComponent::AimAt(FVector HitLocation)
+void UAimingComponent::MoveBarrelTowards(FVector AimDirection)
 {
-	FString OurTankName = GetOwner()->GetName();
-	UE_LOG(LogTemp, Warning, TEXT ("%s aiming at: %s"), *OurTankName, *HitLocation.ToString());	
+	FRotator BarrelRot = BarrelMesh->GetForwardVector().Rotation();
+	FRotator AimRot = AimDirection.Rotation();
+	FRotator DeltaRo = AimRot - BarrelRot;
+	
+	UE_LOG(LogTemp, Warning, TEXT("AimAsRotator: %s "), *AimRot.ToString());
+	// take the barrels current rotation and forward vector to equal the hit locations
 }
 

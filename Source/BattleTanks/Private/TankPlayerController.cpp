@@ -42,6 +42,7 @@ void ATankPlayerController::AimAtCrossHair()
     {
         return;
     }
+
     
     FVector HitLocation;
     if (GetRayHitLocation(HitLocation))

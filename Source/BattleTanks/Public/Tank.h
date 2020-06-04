@@ -16,6 +16,10 @@ public:
 	ATank();
 
 	void AimAt(FVector HitLocation);
+
+	UFUNCTION(BlueprintCallable)
+	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
+	
 	
 
 protected:
@@ -24,6 +28,8 @@ protected:
 
 	class UAimingComponent* TankAimingComponent = nullptr;
 
+	
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -31,4 +37,6 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UPROPERTY(EditAnywhere, Category = "Firing")
+	float LaunchSpeed = 4000;	
 };
